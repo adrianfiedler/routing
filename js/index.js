@@ -1,0 +1,2 @@
+require(['uicomponents'], function (uicomps) {
+});

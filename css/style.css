@@ -1,0 +1,12 @@
+.command-row {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro-text {
+  font-family: Roboto, sans-serif;
+  text-align: center;
+}

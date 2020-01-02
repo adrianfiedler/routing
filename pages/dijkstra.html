@@ -1,0 +1,81 @@
+<html>
+
+<head>
+  <script data-main="../js/dijkstra-demo" src="../js/libs/require.min.js"></script>
+  <link rel="stylesheet" href="../css/material-components-web.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/material.icons.css">
+</head>
+
+<body style="margin: 0px">
+  <header class=" mdc-top-app-bar">
+    <div class="mdc-top-app-bar__row">
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+        <a href="../index.html" class="mdc-theme--on-secondary mdc-button">
+          <span class="mdc-button__ripple"></span>
+          <i class="material-icons mdc-button__icon">home</i>
+        </a>
+        <span class="mdc-top-app-bar__title">Dijkstra</span>
+      </section>
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+        <a href="" class="mdc-theme--on-secondary mdc-button mdc-button--raised">
+          <span class="mdc-button__ripple"></span>
+          Dijkstra
+        </a>
+        <button class="mdc-theme--on-secondary mdc-button"> <span class="mdc-button__ripple"></span>A*(NA)</button>
+      </section>
+    </div>
+  </header>
+  <div class="mdc-top-app-bar--fixed-adjust mdc-layout-grid">
+    <div class="mdc-layout-grid__inner" style="padding-top: 24px">
+      <div class="mdc-layout-grid__cell--span-12" style="font-family: Roboto, sans-serif;">
+        Dijkstra's shortest path algorithm has a time complexity of <code>O(|E| + |V|<sup>2</sup>) = O(|V|<sup>2</sup>)</code> when using arrays or lists 
+        and <code>|E|</code> is the amount of edges and <code>|V|</code> is the amount of vertices.<br />
+      </div>
+      <div
+        class="mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
+        <div style="height: 100%; display: flex; flex-direction: column; justify-content: start;">
+          <div>
+            <div class="mdc-text-field text-field mdc-text-field--outlined">
+              <input type="text" id="size-input" class="mdc-text-field__input" value="40"
+                aria-describedby="size-input-helper-text">
+              <div class="mdc-notched-outline mdc-notched-outline--upgraded">
+                <div class="mdc-notched-outline__leading">
+                </div>
+                <div class="mdc-notched-outline__notch">
+                  <label class="mdc-floating-label" for="size-input">Data size</label></div>
+                <div class="mdc-notched-outline__trailing"></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="mdc-text-field text-field mdc-text-field--outlined" style="margin-top: 10px">
+              <input type="text" id="ms-input" class="mdc-text-field__input" value="100"
+                aria-describedby="ms-input-helper-text">
+              <div class="mdc-notched-outline mdc-notched-outline--upgraded">
+                <div class="mdc-notched-outline__leading">
+                </div>
+                <div class="mdc-notched-outline__notch">
+                  <label class="mdc-floating-label" for="ms-input">Delay (ms)</label></div>
+                <div class="mdc-notched-outline__trailing"></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <button id="sort-start" class="mdc-button mdc-button--raised" style="margin-top: 10px">
+              <span class="mdc-button__ripple"></span>
+              Sort me!
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="canvas-parent"
+        class="mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-4-phone">
+        <canvas id="sketch-canvas"></canvas>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>
