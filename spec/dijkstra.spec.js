@@ -1,46 +1,46 @@
-const QuickSort = require('../js/sorters/quicksort');
+const Dijkstra = require('../js/routers/dijkstra');
 
-describe('QuickSort suite', function () {
+describe('Dijkstra suite', function () {
   beforeEach(function () {
-    this.sorter = new QuickSort(0);
+    this.router = new Dijkstra(0);
   });
 
-  it('sorts empty input ', async function () {
-    let sortedList = await this.sorter.sort();
-    expect(sortedList.length).toBe(0);
-  });
-
-  it('sorts empty input array []', async function () {
-    let sortedList = await this.sorter.sort([]);
-    expect(sortedList.length).toBe(0);
-  });
-
-  it('sorts input array [5]', function () {
-    return this.sorter.sort([5]).then((sortedList) => {
-      expect(sortedList.length).toBe(1);
-      expect(sortedList[0]).toBe(5);
-    });
-  });
-
-  it('sorts input array [5,2,10,6,4,99]', function () {
-    return this.sorter.sort([5, 2, 10, 6, 4, 99]).then((sortedList) => {
-      const expectedArr = [2, 4, 5, 6, 10, 99];
-      expect(sortedList.length).toBe(6);
-      expect(compareArrays(sortedList, expectedArr)).toBe(true);
-    });
-  });
-
-  function compareArrays (arr1, arr2) {
-    if (arr1.length != arr2.length) {
-      return false;
+  it('routes empty input', async function () {
+    try {
+      let routedList = await this.router.route();
+    } catch (e) {
+      expect(e).toBe('not all parameters set');
     }
-    for (let index = 0; index < arr1.length; index++) {
-      const el1 = arr1[index];
-      const el2 = arr2[index];
-      if (el1 !== el2) {
-        return false;
-      }
+  });
+
+  it('routes empty input array', async function () {
+    try {
+      let routedList = await this.router.route([]);
+    } catch (e) {
+      expect(e).toBe('not all parameters set');
     }
-    return true;
-  }
+  });
+
+  it('routes simple 2 value array', async function () {
+    let n0 = { id: 0, children: [{ weight: 1, childId: 1 }] };
+    let n1 = { id: 1, children: [{ weight: 1, childId: 0 }] };
+    let routedList = await this.router.route([n0, n1], 0, 1);
+    expect(routedList.length).toBe(2);
+    expect(routedList[0].distance).toBe(0);
+    expect(routedList[0].via).toBe(0);
+    expect(routedList[1].distance).toBe(1);
+    expect(routedList[1].via).toBe(0);
+  });
+
+  it('routes simple 2 way array with 1 weight and 3 weight', async function () {
+    let n0 = { id: 0, children: [{ weight: 1, childId: 1 }, { weight: 1, childId: 2 }] };
+    let n1 = { id: 1, children: [{ weight: 1, childId: 3 }] };
+    let n2 = { id: 2, children: [{ weight: 3, childId: 3 }] };
+    let n3 = { id: 3, children: [] };
+    let routedList = await this.router.route([n0, n1, n2, n3], 0, 3);
+    expect(routedList.length).toBe(4);
+    expect(routedList[3].distance).toBe(2);
+    expect(routedList[3].via).toBe(1);
+  });
+
 });

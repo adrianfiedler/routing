@@ -3,7 +3,7 @@ define(['uicomponents', 'canvas-drawer'], function (uicomponents, CanvasDrawer) 
     initData: 40,
     values: [],
     // set in concrete sorter
-    sorter: null,
+    router: null,
     canvasDrawer: new CanvasDrawer('sketch-canvas', 'canvas-parent'),
 
     init: function () {
@@ -15,20 +15,20 @@ define(['uicomponents', 'canvas-drawer'], function (uicomponents, CanvasDrawer) 
 
       let sortMsInput = document.querySelector('#ms-input');
       sortMsInput.addEventListener('change', () => {
-        if (this.sorter) {
-          this.sorter.delay = sortMsInput.value;
+        if (this.router) {
+          this.router.delay = sortMsInput.value;
         }
       });
 
       document.querySelector('#sort-start').addEventListener('click', () => {
         document.querySelector('#sort-start').disabled = true;
-        if (this.sorter) {
+        if (this.router) {
 
           const iterationObserver = function (data) {
             this.values = data;
             this.canvasDrawer.draw(data);
           };
-          this.sorter.sort(this.values, iterationObserver.bind(this)).then((sortedList) => {
+          this.router.route().then((sortedList) => {
             this.values = sortedList;
             document.querySelector('#sort-start').disabled = false;
           });

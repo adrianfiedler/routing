@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "browser-sync start --server --files \"css/style.css\" \"js/**/*.js\" \"./**/*.html\" --ignore \"node_modules/*\"",
     "test": "jasmine",
-    "debug": "node --inspect-brk node_modules/jasmine/bin/jasmine.js spec/quicksort.spec.js"
+    "debug": "node --inspect-brk node_modules/jasmine/bin/jasmine.js spec/dijkstra.spec.js"
   },
   "repository": {
     "type": "git",
