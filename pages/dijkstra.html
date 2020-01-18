@@ -1,7 +1,7 @@
 <html>
 
 <head>
-  <script data-main="../js/dijkstra-demo" src="../js/libs/require.min.js"></script>
+  <!-- <script data-main="../js/dijkstra-demo" src="../js/libs/require.min.js"></script> -->
   <link rel="stylesheet" href="../css/material-components-web.min.css">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/material.icons.css">
@@ -29,7 +29,8 @@
   <div class="mdc-top-app-bar--fixed-adjust mdc-layout-grid">
     <div class="mdc-layout-grid__inner" style="padding-top: 24px">
       <div class="mdc-layout-grid__cell--span-12" style="font-family: Roboto, sans-serif;">
-        Dijkstra's shortest path algorithm has a time complexity of <code>O(|E| + |V|<sup>2</sup>) = O(|V|<sup>2</sup>)</code> when using arrays or lists 
+        Dijkstra's shortest path algorithm has a time complexity of
+        <code>O(|E| + |V|<sup>2</sup>) = O(|V|<sup>2</sup>)</code> when using arrays or lists
         and <code>|E|</code> is the amount of edges and <code>|V|</code> is the amount of vertices.<br />
       </div>
       <div
@@ -69,13 +70,13 @@
           </div>
         </div>
       </div>
-      <div id="canvas-parent"
+      <div id="canvas-parent" style="height: 600px"
         class="mdc-layout-grid__cell--span-10-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-4-phone">
-        <canvas id="sketch-canvas"></canvas>
       </div>
     </div>
 
   </div>
+  <script src="../../dist/dijkstraDemo.js"></script>
 </body>
 
 </html>

@@ -10,3 +10,12 @@
   font-family: Roboto, sans-serif;
   text-align: center;
 }
+
+.newDiv {
+  color:red;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border: 1px solid black;
+  box-sizing: border-box;
+}

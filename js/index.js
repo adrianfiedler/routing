@@ -1,2 +1,1 @@
-require(['uicomponents'], function (uicomps) {
-});
+import uicomponents from './uicomponents.js';
