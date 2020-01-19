@@ -10,7 +10,7 @@ export default {
   init: function () {
     let sortSizeInput = document.querySelector('#size-input');
     sortSizeInput.addEventListener('change', () => {
-      this.generateData(sortSizeInput.value);
+      this.generateData();
       this.canvasDrawer.draw(this.values);
     });
 
@@ -36,14 +36,43 @@ export default {
       }
     });
 
-    this.generateData(this.initData);
+    this.generateData();
     this.canvasDrawer.draw(this.values);
   },
 
-  generateData: function (size) {
+  generateData: function () {
+    let cols = 60;
+    let rows = 40;
     this.values = [];
-    for (let i = 0; i < size; i++) {
-      this.values.push(Math.random() * 400);
+    let id = 0;
+    for (let row = 0; row < rows; row++) {
+      let rowArr = [];
+      for (let col = 0; col < cols; col++) {
+        let val = {
+          id: id++
+        };
+        let children = [];
+        // right
+        if (col < cols - 1) {
+          children.push({ weight: 1, childId: val.id + 1 });
+        }
+        // left
+        if (col > 0) {
+          children.push({ weight: 1, childId: val.id - 1 });
+        }
+        // bottom
+        if (row < rows - 1) {
+          children.push({ weight: 1, childId: val.id + cols });
+        }
+        // top
+        if (row > 0) {
+          children.push({ weight: 1, childId: val.id - cols });
+        }
+        val.children = children;
+        rowArr.push(val);
+      }
+      this.values.push(rowArr);
     }
+    console.table(this.values);
   }
 };

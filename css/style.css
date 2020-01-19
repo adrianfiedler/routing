@@ -11,11 +11,12 @@
   text-align: center;
 }
 
-.newDiv {
-  color:red;
-  width: 20px;
-  height: 20px;
+.square {
   display: inline-block;
   border: 1px solid black;
   box-sizing: border-box;
+}
+
+.clicked {
+  background-color: red;
 }
