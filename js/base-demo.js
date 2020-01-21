@@ -1,11 +1,13 @@
 import uicomponents from './uicomponents.js';
 import CanvasDrawer from './canvas-drawer.js';
-export default {
+let base = {
   initData: 40,
+  startSelect: true,
+  startId: null,
+  endId: null,
   values: [],
   // set in concrete sorter
   router: null,
-  canvasDrawer: new CanvasDrawer('canvas-parent'),
 
   init: function () {
     let sortSizeInput = document.querySelector('#size-input');
@@ -21,20 +23,7 @@ export default {
       }
     });
 
-    document.querySelector('#sort-start').addEventListener('click', () => {
-      document.querySelector('#sort-start').disabled = true;
-      if (this.router) {
 
-        const iterationObserver = function (data) {
-          this.values = data;
-          this.canvasDrawer.draw(data);
-        };
-        this.router.route().then((sortedList) => {
-          this.values = sortedList;
-          document.querySelector('#sort-start').disabled = false;
-        });
-      }
-    });
 
     this.generateData();
     this.canvasDrawer.draw(this.values);
@@ -73,6 +62,23 @@ export default {
       }
       this.values.push(rowArr);
     }
-    console.table(this.values);
+  },
+
+  start: function (startDiv, endDiv) {
+    if (this.router) {
+
+      const iterationObserver = function (data) {
+        this.values = data;
+        this.canvasDrawer.draw(data);
+      };
+      this.router.route(this.values, startDiv.id, endDiv.id, iterationObserver).then((sortedList) => {
+        this.values = sortedList;
+        document.querySelector('#sort-start').disabled = false;
+      });
+    }
   }
 };
+
+base.canvasDrawer = new CanvasDrawer('canvas-parent', base);
+
+export default base;

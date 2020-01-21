@@ -17,6 +17,10 @@
   box-sizing: border-box;
 }
 
-.clicked {
+.start {
   background-color: red;
+}
+
+.end {
+  background-color: blue;
 }
