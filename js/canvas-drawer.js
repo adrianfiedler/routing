@@ -15,7 +15,11 @@ class CanvasDrawer {
   }
 
   draw(values) {
+    this.values = values;
     console.log('draw');
+    while (this.parent.firstChild) {
+      this.parent.removeChild(this.parent.firstChild);
+    }
     const divSize = Math.floor(this.parentWidth / values[0].length);
     let id = 0;
     for (let row = 0; row < values.length; row++) {
@@ -27,6 +31,12 @@ class CanvasDrawer {
         newDiv.style.width = divSize;
         newDiv.style.height = divSize;
         newDiv.addEventListener('click', () => this.clickHandler(newDiv));
+        if (this.start == newDiv.id) {
+          newDiv.classList.add('start');
+        }
+        if (this.end == newDiv.id) {
+          newDiv.classList.add('end');
+        }
         rowDiv.appendChild(newDiv);
       }
       this.parent.appendChild(rowDiv);
@@ -35,20 +45,13 @@ class CanvasDrawer {
 
   clickHandler(newDiv) {
     if (this.startSelect) {
-      if (this.startDiv) {
-        this.startDiv.classList.remove("start");
-      }
-      newDiv.classList.toggle('start');
-      this.startDiv = newDiv;
+      this.start = newDiv.id;
     } else {
-      if (this.endDiv) {
-        this.endDiv.classList.remove("end");
-      }
-      newDiv.classList.toggle('end');
-      this.endDiv = newDiv;
+      this.end = newDiv.id;
     }
     this.startSelect = !this.startSelect;
-    console.log('startId: ' + this.startDiv.id + ', endId: ' + (this.endDiv ? this.endDiv.id : ''));
+    console.log('startId: ' + this.start + ', endId: ' + this.end);
+    this.draw(this.values);
   }
 }
 module.exports = CanvasDrawer;
